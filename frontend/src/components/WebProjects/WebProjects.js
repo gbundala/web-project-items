@@ -112,9 +112,13 @@ export default function WebProjects() {
     // the data in json format from our Custom API
     // then we set the data in the state variable
     fetch("/api")
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("res response:", res);
+        return res.json();
+      })
       .then(
         (data) => {
+          console.log("what is the data:", data);
           if (!ignoreSettingState) setwebProjectItems(data);
           setLoading(false);
           setError(null);
