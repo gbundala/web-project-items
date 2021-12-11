@@ -4,6 +4,9 @@ const express = require("express");
 // Load bodyParse from the body-parser library
 const bodyParser = require("body-parser");
 
+// Load the path module
+const path = require("path");
+
 // Create the app object from the top-level express function call
 // to initialize the express app
 const app = express();
