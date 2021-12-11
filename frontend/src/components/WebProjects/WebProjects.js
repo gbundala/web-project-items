@@ -146,7 +146,7 @@ export default function WebProjects() {
 
       {loading && <p>Loading...</p>}
 
-      {error && <p>`Something is wrong: ${error}`</p>}
+      {error && <p>Something is wrong!</p>}
 
       <div className="project-items-wrapper">
         {webProjectItems &&
