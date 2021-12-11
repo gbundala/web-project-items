@@ -132,9 +132,11 @@ apiRouter.delete("/deleteItem/:id", function (req, res) {
 
   // We use the array.filter() method to only filter
   // the items that are not deleted
-  webProjectItemsArrayAfterDelete = webProjectItemsArray.filter((item) => {
-    return item.id !== id;
-  });
+  const webProjectItemsArrayAfterDelete = webProjectItemsArray.filter(
+    (item) => {
+      return item.id !== id;
+    }
+  );
 
   //   write to the json file
   fsHandler.writeFile(
