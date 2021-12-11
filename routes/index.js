@@ -22,6 +22,7 @@ const webProjectItems = fsHandler.readFileSync("./projectItems.json");
 
 console.log("webProjectItems", webProjectItems);
 const webProjectItemsArray = JSON.parse(webProjectItems);
+console.log("webArray: ", webProjectItemsArray);
 
 // We create a function to generate unique number IDs
 // Below is a reference to MDN on random number generation
@@ -36,7 +37,7 @@ const createNewID = function () {
 // GET Request to access the list of web project items
 apiRouter.get("/", function (req, res) {
   res.json({
-    messag: "Getting data from server",
+    message: "Getting data from server",
     webProjectItemsArray,
   });
 });

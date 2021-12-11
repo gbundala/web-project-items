@@ -127,6 +127,8 @@ export default function WebProjects() {
         (err) => {
           setError(err);
           setLoading(false);
+          console.error("Error in fetching data: ", err);
+          // console.warn(jqxhr.responseText)
         }
       );
 
