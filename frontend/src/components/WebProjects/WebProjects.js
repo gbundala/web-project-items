@@ -119,7 +119,8 @@ export default function WebProjects() {
       .then(
         (data) => {
           console.log("what is the data:", data);
-          if (!ignoreSettingState) setwebProjectItems(data);
+          if (!ignoreSettingState)
+            setwebProjectItems(data.webProjectItemsArray);
           setLoading(false);
           setError(null);
         },

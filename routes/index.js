@@ -19,6 +19,8 @@ const webProjectItems = fsHandler.readFileSync("./projectItems.json");
 
 // we parse the returned items to convert the returned string
 // to an object
+
+console.log("webProjectItems", webProjectItems);
 const webProjectItemsArray = JSON.parse(webProjectItems);
 
 // We create a function to generate unique number IDs
