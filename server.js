@@ -4,7 +4,8 @@ const express = require("express");
 // Load bodyParse from the body-parser library
 const bodyParser = require("body-parser");
 
-// Load the path module
+// Load the path module to be used in the deployment
+// configuration  below
 const path = require("path");
 
 // Create the app object from the top-level express function call
@@ -61,7 +62,8 @@ app.get("*", function (req, res, next) {
 // routes and middleware in order to be able to catch any
 // errors occuring the processes above
 app.use(function (err, req, res, next) {
-  res.send("Oops something is wrong! Recheck your address");
+  console.log(err.stack);
+  res.status(500).send("Oops something is wrong!?!?");
 });
 
 // Port
