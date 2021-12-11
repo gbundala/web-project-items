@@ -15,18 +15,6 @@ const app = express();
 // Load the routes file to be able to use it
 const apiRoutes = require("./routes");
 
-// Heroku Deployment Configuration
-// To enable Express to serve up resources that have been build
-// from the React app. React makes available the files in the
-// in a build directory in production
-// FIXME: Update the path again and test
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-  });
-}
-
 // Express middleware
 // To enable the server to accept requests from the Body of
 // a request in a json format.
@@ -39,6 +27,18 @@ app.use(bodyParser.json());
 
 // Use the apiRoutes
 app.use("/api", apiRoutes);
+
+// Heroku Deployment Configuration
+// To enable Express to serve up resources that have been build
+// from the React app. React makes available the files in the
+// in a build directory in production
+// FIXME: Update the path again and test
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
 
 // For general error handling inline with the gist below
 // We use the "*" wildcard to capture any errors
