@@ -19,6 +19,7 @@ const apiRoutes = require("./routes");
 // To enable Express to serve up resources that have been build
 // from the React app. React makes available the files in the
 // in a build directory in production
+// FIXME: Update the path again and test
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "./frontend/build")));
   app.get("*", (req, res) => {

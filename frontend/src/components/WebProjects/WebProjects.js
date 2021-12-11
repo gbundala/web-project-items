@@ -142,7 +142,7 @@ export default function WebProjects() {
 
       {loading && <p>Loading...</p>}
 
-      {error && <p>Something is wrong!</p>}
+      {error && <p>Something is wrong: {JSON.stringify(error)}</p>}
 
       <div className="project-items-wrapper">
         {webProjectItems &&
