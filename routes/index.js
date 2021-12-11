@@ -33,7 +33,10 @@ const createNewID = function () {
 
 // GET Request to access the list of web project items
 apiRouter.get("/", function (req, res) {
-  res.json(webProjectItemsArray);
+  res.json({
+    messag: "Getting data from server",
+    webProjectItemsArray,
+  });
 });
 
 // POST Request to add additional items to the list
