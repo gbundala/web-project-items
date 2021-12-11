@@ -1,0 +1,11 @@
+.add-item-wrapper {
+  border: 3px solid rgb(235, 239, 240);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+}
+
+.add-item-title {
+  color: rgb(192, 200, 201);
+  text-align: left;
+}

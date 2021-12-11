@@ -1,0 +1,57 @@
+// Load the express library
+const express = require("express");
+
+// Load bodyParse from the body-parser library
+const bodyParser = require("body-parser");
+
+// Create the app object from the top-level express function call
+// to initialize the express app
+const app = express();
+
+// Load the routes file to be able to use it
+const apiRoutes = require("./routes");
+
+// Express middleware
+// To enable the server to accept requests from the Body of
+// a request in a json format.
+app.use(express.json());
+
+// The bodyParser middleware is used to parse the body
+// of the request to read it and expose it to req.body
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Use the apiRoutes
+app.use("/api", apiRoutes);
+
+// For general error handling inline with the gist below
+// We use the "*" wildcard to capture any errors
+// https://gist.github.com/zcaceres/2854ef613751563a3b506fabce4501fd#generalized-error-handling
+// Then we respond with the message if the use enters
+// a different route not specified here
+app.get("*", function (req, res, next) {
+  let err = new Error();
+
+  // we set the status code to 404
+  err.statusCode = 404;
+
+  // In order to enable our middleware to redirect
+  // we set the shouldRedirect property on the err
+  // object to true
+  err.shouldRedirect = true;
+  next(err);
+});
+
+// Our error handling middleware
+// We place our error handling middleware at the end after all
+// routes and middleware in order to be able to catch any
+// errors occuring the processes above
+app.use(function (err, req, res, next) {
+  res.send("Oops something is wrong! Recheck your address");
+});
+
+// Port
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, function () {
+  console.log(`App server is listening on PORT ${PORT}`);
+});
