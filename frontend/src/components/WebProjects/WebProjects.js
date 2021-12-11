@@ -95,6 +95,8 @@ export default function WebProjects() {
   }
 
   useEffect(() => {
+    console.log("onmounting inside effect", webProjectItems);
+    console.log("whats the error inside effect", error);
     // this variable is useful to determine when to set the
     // webProjectItems state variable. We therefore set the ignore
     // setting state variable to true in the return statement
@@ -134,6 +136,8 @@ export default function WebProjects() {
     };
   }, []);
 
+  console.log("onmounting outside", webProjectItems);
+  console.log("whats the error outside", error);
   return (
     <div className="main-wrapper">
       <h1>Web Project Items</h1>
@@ -142,7 +146,7 @@ export default function WebProjects() {
 
       {loading && <p>Loading...</p>}
 
-      {error && <p>Something is wrong: {JSON.stringify(error)}</p>}
+      {error && <p>`Something is wrong: ${error}`</p>}
 
       <div className="project-items-wrapper">
         {webProjectItems &&
