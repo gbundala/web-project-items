@@ -1,3 +1,5 @@
+// EXPRESS SETUPS, ROUTES & MIDDLEWARE
+
 // Load the express library
 const express = require("express");
 
@@ -28,17 +30,24 @@ app.use(bodyParser.json());
 // Use the apiRoutes
 app.use("/api", apiRoutes);
 
+// DEPLOYMENT TO PRODUCTION
+
 // Heroku Deployment Configuration
 // To enable Express to serve up resources that have been build
-// from the React app. React makes available the files in the
-// in a build directory in production
-// FIXME: Update the path again and test
+// from the React app. React makes available the files in a build
+// directory in production.
+// KEY: This has to be below the routes in order to avoid bugs
+// in production where we GET the HTML returned by React
+// instead of the JSON objects being called in our GET methods
+// in the fetch calls.
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend/build")));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 }
+
+// ERROR HANDLING
 
 // For general error handling inline with the gist below
 // We use the "*" wildcard to capture any errors
@@ -67,7 +76,7 @@ app.use(function (err, req, res, next) {
   res.status(500).send("Oops something is wrong!?!?");
 });
 
-// Port
+// DYNAMIC PORT
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, function () {
   console.log(`App server is listening on PORT ${PORT}`);

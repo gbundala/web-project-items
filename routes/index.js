@@ -17,12 +17,10 @@ const fsHandler = require("fs");
 // https://www.tutorialsteacher.com/nodejs/nodejs-file-system
 const webProjectItems = fsHandler.readFileSync("./projectItems.json");
 
-// we parse the returned items to convert the returned string
-// to an object
-
-console.log("webProjectItems", webProjectItems);
+// We parse the returned items to convert the returned string
+// to an object. We declare this variable here with "let"
+// as we will reassign its value under the DELETE router below
 let webProjectItemsArray = JSON.parse(webProjectItems);
-console.log("webArray: ", webProjectItemsArray);
 
 // We create a function to generate unique number IDs
 // Below is a reference to MDN on random number generation
@@ -50,11 +48,11 @@ apiRouter.post("/addItem", function (req, res) {
   // push to webProjectItemsArray
   webProjectItemsArray.push(newItem);
 
-  // write to the json file
-  //   The writeFile method accepts the data parameter only as
+  // Writing to the json file:
+  // The writeFile method accepts the data parameter only as
   // a string hence we convert the Array instance to a string
   // we throw any errors in the callback parameter of the
-  //   writeFile method
+  // writeFile method
   fsHandler.writeFile(
     "./projectItems.json",
     JSON.stringify(webProjectItemsArray),
@@ -126,11 +124,6 @@ apiRouter.put("/updateItem/:id", function (req, res) {
   });
 });
 
-// FIXME: Reviste whether to send the entire object as body
-// to the delete method and handle everything in this router
-// locally instead of referring to the webProjectsArray and
-// see if it solves the production issue of not deleting
-
 // DELETE Request to delete an item from the list
 apiRouter.delete("/deleteItem/:id", function (req, res) {
   const id = parseInt(req.params.id);
@@ -144,6 +137,8 @@ apiRouter.delete("/deleteItem/:id", function (req, res) {
   );
 
   // Updating the webProjectItemsArray
+  // In order to keep it updated with the array of items
+  // after deleting
   webProjectItemsArray = webProjectItemsArrayAfterDelete;
 
   //   write to the json file

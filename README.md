@@ -1,5 +1,35 @@
 # Web Projects Items
 
+## Table of Contents
+
+1. Installing and using the application
+2. Frontend part of the application
+3. Backend part of the application
+
+## Installation and using the application
+
+This application includes both the frontend created with ReactJS and the backend part created with ExpressJS.
+
+If you need to see application in action in development mode you can download the source files in your local environment then **`npm install`** to install the dependencies. Then you can start the server with **`npm start`**.
+
+You may also clone the repo from https://github.com/gbundala/web-project-items in your local environment or download the zip file from Github and follow the steps above.
+
+If you wish to see the application in action you can visit the deployed application in production hosted on Heroku: https://web-project-items.herokuapp.com/.
+
+In production, the backend application builds and serves up the frontend application as well. This is accomplished by the `heroku-postbuild` script in the package.json file in the root of the directory.
+
+The application is fully configured to work both in the local environment as well as in a deployed environment (in this case, Heroku!).
+
+## Frontend part of the application
+
+The frontend is created with ReactJS. The main component WebProjects handles all the data fetching logic including GET, POST, PUT and DELETE requests to the ExpressJS API. The "fetch" browser API is used to make these data fetching requests.
+
+Children to the main component mentioned above handle the presentation of the individual added web project items is well as the overall presentation but also allow for the user to trigger actions from the child component to call event handler functions that are defined in the parent.
+
+## Backend part of the application
+
+The below procedures are relevant if you only want to review and test the Express application part of the overral app.
+
 This RESTful API is created with Express.js, a popular Node.js library that simplifies the development of api with JavaScript.
 
 In order to test this application, the user needs to download the files on their local environment in a folder. Change Directory into this repository in the command line and run **`npm install`** to install the dependencies, then run **`npm start`** to start the api server on port 8080.

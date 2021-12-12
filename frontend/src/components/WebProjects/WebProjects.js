@@ -95,8 +95,6 @@ export default function WebProjects() {
   }
 
   useEffect(() => {
-    console.log("onmounting inside effect", webProjectItems);
-    console.log("whats the error inside effect", error);
     // this variable is useful to determine when to set the
     // webProjectItems state variable. We therefore set the ignore
     // setting state variable to true in the return statement
@@ -108,17 +106,13 @@ export default function WebProjects() {
     // fetching the data from our Custom API and managing it
     // we use the endpoints exposed by our restful API
     // in the fetch method below
-    // Further we parse json() on the response since we receive\
+    // Further we parse json() on the response since we receive
     // the data in json format from our Custom API
     // then we set the data in the state variable
     fetch("/api")
-      .then((res) => {
-        console.log("res response:", res);
-        return res.json();
-      })
+      .then((res) => res.json())
       .then(
         (data) => {
-          console.log("what is the data:", data);
           if (!ignoreSettingState)
             setwebProjectItems(data.webProjectItemsArray);
           setLoading(false);
@@ -128,7 +122,6 @@ export default function WebProjects() {
           setError(err);
           setLoading(false);
           console.error("Error in fetching data: ", err);
-          // console.warn(jqxhr.responseText)
         }
       );
 
@@ -143,8 +136,6 @@ export default function WebProjects() {
     };
   }, []);
 
-  console.log("onmounting outside", webProjectItems);
-  console.log("whats the error outside", error);
   return (
     <div className="main-wrapper">
       <h1>Web Project Items</h1>
