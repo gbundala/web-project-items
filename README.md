@@ -10,7 +10,7 @@
 
 This application includes both the frontend created with ReactJS and the backend part created with ExpressJS.
 
-If you need to see application in action in development mode you can download the source files in your local environment then **`npm install`** to install the dependencies. Then you can start the server with **`npm start`**.
+If you need to see application in action in development mode you can download the source files in your local environment then **`npm install`** to install the dependencies. Then you can start the server with **`npm start`**. If you want to be making changes you can **`npm run dev`** to run the nodemon script that will be restarting the server on each change you make in the code. The `cd` into the `frontend` directory and do the run **`npm install`** to install the ReactJS dependencies in the frontend then run **`npm start`** as well to start the frontend part of the application. Then navigate to http://localhost:3000/.
 
 You may also clone the repo from https://github.com/gbundala/web-project-items in your local environment or download the zip file from Github and follow the steps above.
 
