@@ -21,7 +21,7 @@ const webProjectItems = fsHandler.readFileSync("./projectItems.json");
 // to an object
 
 console.log("webProjectItems", webProjectItems);
-const webProjectItemsArray = JSON.parse(webProjectItems);
+let webProjectItemsArray = JSON.parse(webProjectItems);
 console.log("webArray: ", webProjectItemsArray);
 
 // We create a function to generate unique number IDs
@@ -126,6 +126,11 @@ apiRouter.put("/updateItem/:id", function (req, res) {
   });
 });
 
+// FIXME: Reviste whether to send the entire object as body
+// to the delete method and handle everything in this router
+// locally instead of referring to the webProjectsArray and
+// see if it solves the production issue of not deleting
+
 // DELETE Request to delete an item from the list
 apiRouter.delete("/deleteItem/:id", function (req, res) {
   const id = parseInt(req.params.id);
@@ -137,6 +142,9 @@ apiRouter.delete("/deleteItem/:id", function (req, res) {
       return item.id !== id;
     }
   );
+
+  // Updating the webProjectItemsArray
+  webProjectItemsArray = webProjectItemsArrayAfterDelete;
 
   //   write to the json file
   fsHandler.writeFile(
