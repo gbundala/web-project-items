@@ -1,7 +1,12 @@
 // EXPRESS SETUPS, ROUTES & MIDDLEWARE
 
+// IMPORTS
+
 // Load the express library
 const express = require("express");
+
+// Load Helmet library for security
+const helmet = require("helmet");
 
 // Load bodyParse from the body-parser library
 const bodyParser = require("body-parser");
@@ -10,12 +15,20 @@ const bodyParser = require("body-parser");
 // configuration  below
 const path = require("path");
 
+// Load the routes file to be able to use it
+const apiRoutes = require("./routes");
+
+// EXPRESS APP INITIALIZATION
+
 // Create the app object from the top-level express function call
 // to initialize the express app
 const app = express();
 
-// Load the routes file to be able to use it
-const apiRoutes = require("./routes");
+// MIDDLEWARES
+
+// Calling helmet middleware which helps secure the App
+// by setting various HTTP headers
+app.use(helmet());
 
 // Express middleware
 // To enable the server to accept requests from the Body of

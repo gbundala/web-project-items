@@ -26,7 +26,7 @@ import "./WebProjects.css";
  */
 
 export default function WebProjects() {
-  const [webProjectItems, setwebProjectItems] = useState([]);
+  const [webProjectItems, setWebProjectItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,7 +41,7 @@ export default function WebProjects() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setwebProjectItems(data.webProjectItemsArray);
+        setWebProjectItems(data.webProjectItemsArray);
         setLoading(false);
         setError(null);
       })
@@ -61,7 +61,7 @@ export default function WebProjects() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setwebProjectItems(data.webProjectItemsArray);
+        setWebProjectItems(data.webProjectItemsArray);
         setLoading(false);
         setError(null);
       })
@@ -83,7 +83,7 @@ export default function WebProjects() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setwebProjectItems(data.webProjectItemsArrayAfterDelete);
+        setWebProjectItems(data.webProjectItemsArrayAfterDelete);
         setLoading(false);
         setError(null);
       })
@@ -114,7 +114,7 @@ export default function WebProjects() {
       .then(
         (data) => {
           if (!ignoreSettingState)
-            setwebProjectItems(data.webProjectItemsArray);
+            setWebProjectItems(data.webProjectItemsArray);
           setLoading(false);
           setError(null);
         },
