@@ -29,7 +29,10 @@ const app = express();
 // Calling helmet middleware which helps secure the App
 // by setting various HTTP headers
 
-// HACK: Included teh unsafe-inline directive as part of the CSP policy to rectify the error as per the message below
+// HACK: Included the unsafe-inline directive as part of the CSP policy to rectify the error as per the message below.
+// The useDefaults is set to 'true' hence all the defaults
+// remain the same except for directives option which
+// only overrides the "script-src" option
 
 /**
  * ERROR MESSAGE:
