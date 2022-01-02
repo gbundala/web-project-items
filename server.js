@@ -28,7 +28,34 @@ const app = express();
 
 // Calling helmet middleware which helps secure the App
 // by setting various HTTP headers
-app.use(helmet());
+
+// HACK: Included teh unsafe-inline directive as part of the CSP policy to rectify the error as per the message below
+
+/**
+ * ERROR MESSAGE:
+ * Refused to execute inline script because it violates the
+ *  following Content Security Policy directive: "script-src
+ * 'self'". Either the 'unsafe-inline' keyword, a hash
+ * ('sha256-1kri9uKG6Gd9VbixGzyFE/kaQIHihYFdxFKKhgz3b80='), or a
+ * nonce ('nonce-...') is required to enable inline execution.
+ *
+ *
+ * SOURCES:
+ * https://help.fullstory.com/hc/en-us/articles/360020622854-Can-I-use-Content-Security-Policy-CSP-with-FullStory-
+ * https://codeutility.org/helmet-content-security-policy-blocking-react-js/amp/
+ * https://github.com/helmetjs/helmet
+ * https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+ *
+ */
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "script-src": ["'self'", "'unsafe-inline'"],
+      "style-src": null,
+    },
+  })
+);
 
 // Express middleware
 // To enable the server to accept requests from the Body of
